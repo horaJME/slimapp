@@ -69,6 +69,7 @@ $app->get('/api/OTP/{user}', function (Request $request, Response $response) {
 	$filename = "users/".$user.".txt";
 	$userFile = fopen($filename, "rw") or die("Unable to open file!");
 	$file = fread($userFile,filesize($filename));
+	$file = json_decode($file);
 	$response = $response->withJson($file);
 	$response = $response->withHeader('Content-type', 'application/json');
 	//Sending OTP list
